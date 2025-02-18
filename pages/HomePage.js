@@ -32,4 +32,14 @@ exports.HomePage = class HomePage{
         await this.page.locator(this.cart).click();
     }
 
+    async getURL(){
+         return this.page.url();
+    }
+    async getPageTitle() {
+    
+        return this.page.title();
+    }
+
+
+
 }

@@ -8,12 +8,19 @@ test('test', async({page}) =>{
     //Login Page
     const login=new LoginPage(page)
     await login.gotoLoginPage()
-
+    
     await login.login('pavanol', 'test@123')
     await page.waitForTimeout(3000)
 
     //Home Page
     const home = new HomePage(page)
+   
+    const pageURL = await home.getURL();
+    expect(pageURL).toBe('https://www.demoblaze.com/index.html');
+        
+    const title = await home.getPageTitle();
+    expect(title).toBe('STORE')
+
     await home.addProductToCart("Nexus 6")
     await page.waitForTimeout(3000)
     await home.gototCart();
@@ -25,3 +32,6 @@ test('test', async({page}) =>{
     const status = await cart.checkProductInCart("Nexus 6")
     expect(await status).toBe(true)
 });
+
+
+
