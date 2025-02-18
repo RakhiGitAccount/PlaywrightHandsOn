@@ -7,6 +7,31 @@ exports.HomePage = class HomePage{
         this.cart='#cartur';
     }
 
+    //This method to test locator.spec.js independently
+    async gotoHomePage(){
+        await this.page.goto('https://www.demoblaze.com/index.html');
+    }
+
+    //Method to get locators for locators.spec.js
+    async findPageLocators()
+    {
+
+        //click on login button  - property as a locator
+        await this.page.locator('id=login2').click();
+
+        //Provide username --by CSS
+        await this.page.fill('#loginusername','pavanol' );
+        await this.page.fill("input[id='loginpassword']", 'test@123');
+
+        //Click on Login button
+        await this.page.click("//button[normalize-space()='Log in']");
+
+    }
+
+    async logoutlinkPresence(){
+        return await this.page.locator("//a[normalize-space()='Log out']");
+    }
+
     async addProductToCart(productName){
 
         const productList = await this.page.$$(this.productList);
