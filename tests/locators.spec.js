@@ -1,15 +1,15 @@
 import {test, expect} from '@playwright/test'
-import { HomePage } from '../pages/HomePage';
+import { HomepageLocator } from '../pages/HomePageLocator'; 
 
 test('Locators', async ({page})=>{
 
-    const homePgae = new HomePage(page);
+    const homePageLocator = new HomepageLocator(page);
 
-    await homePgae.gotoHomePage();
-    await homePgae.findPageLocators();
+    await homePageLocator.gotoHomePage();
+    await homePageLocator.findPageLocators();
     await page.waitForTimeout(3000)
 
-    const logoutlink =  await homePgae.logoutlinkPresence();
+    const logoutlink =  await homePageLocator.logoutlinkPresence();
     await expect(logoutlink).toBeVisible();
     
 
